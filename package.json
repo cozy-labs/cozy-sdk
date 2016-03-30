@@ -1,0 +1,31 @@
+{
+  "name": "cozysdk-shell",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "bin": {
+    "cozysdk-shell": "bin/cozysdk-shell"
+  },
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "coffee --bare --compile --output lib src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cozy-labs/cozysdk-shell.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cozy-labs/cozysdk-shell/issues"
+  },
+  "homepage": "https://github.com/cozy-labs/cozysdk-shell#readme",
+  "dependencies": {
+    "open": "0.0.5",
+    "pw": "0.0.4",
+    "request-json-light": "0.5.22",
+    "send": "0.13.2",
+    "simple-cozy": "2.0.6"
+  }
+}

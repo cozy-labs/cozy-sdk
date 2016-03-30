@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+
+
+var argv = require('minimist')(process.argv.slice(2))
+, appPath = require('path').resolve(argv._[0])
+, remoteCozy = argv.remote
+, main = require('../lib/index')
+, pw = require('pw')
+, exec = require('child_process').exec
+, benchServer = null
+, secondExit = false
+, open = require('open')
+
+function afterStarted(err, server, url){
+    if(err){
+        console.log(err.stack);
+        setTimeout(function(){ process.exit(1); }, 10);
+    }else{
+        benchServer = server;
+        console.log('Bench setup at', url);
+        open(url);
+    }
+}
+
+function exitHandler(err) {
+    if (err) console.log(err.stack);
+    if (secondExit) return process.exit();
+
+    console.log('cleaning up')
+    secondExit = true
+    main.removeApplication(function(){ process.exit(); });
+}
+
+if(!appPath){
+    console.log("Usage cozysdk-shell /path/to/your/app " +
+        "--remote your.cozycloud.cc");
+}else if(remoteCozy) {
+    process.stdout.write('Password: ');
+    pw(function (password) {
+        main.start(appPath, remoteCozy, password, afterStarted);
+    })
+}else{
+    main.start(appPath, null, null, afterStarted)
+}
+
+process.on('exit', exitHandler.bind(null));
+process.on('SIGINT', exitHandler.bind(null));
+process.on('uncaughtException', exitHandler.bind(null));
