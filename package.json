@@ -26,6 +26,8 @@
     "pw": "0.0.4",
     "request-json-light": "0.5.22",
     "send": "0.13.2",
+    "minimist": "1.2.0",
+    "http-proxy": "1.13.2",
     "simple-cozy": "2.0.6"
   }
 }
