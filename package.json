@@ -1,10 +1,10 @@
 {
-  "name": "cozysdk-shell",
+  "name": "cozy-sdk",
   "version": "0.0.1",
   "description": "",
   "main": "lib/index.js",
   "bin": {
-    "cozysdk-shell": "bin/cozysdk-shell"
+    "cozy-sdk": "bin/cozy-sdk"
   },
   "scripts": {
     "prepublish": "npm run build",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cozy-labs/cozysdk-shell.git"
+    "url": "https://github.com/cozy-labs/cozy-sdk.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cozy-labs/cozysdk-shell/issues"
+    "url": "https://github.com/cozy-labs/cozy-sdk/issues"
   },
-  "homepage": "https://github.com/cozy-labs/cozysdk-shell#readme",
+  "homepage": "https://github.com/cozy-labs/cozy-sdk#readme",
   "dependencies": {
     "open": "0.0.5",
     "pw": "0.0.4",
