@@ -2,7 +2,7 @@
 
 
 var argv = require('minimist')(process.argv.slice(2))
-, appPath = require('path').resolve(argv._[0])
+, appPath = argv._[0] && require('path').resolve(argv._[0])
 , remoteCozy = argv.remote
 , main = require('../lib/index')
 , pw = require('pw')
@@ -32,8 +32,9 @@ function exitHandler(err) {
 }
 
 if(!appPath){
-    console.log("Usage cozysdk-shell /path/to/your/app " +
-        "--remote your.cozycloud.cc");
+    console.log("Usage cozysdk-shell /path/to/your/app ");
+    console.log("or cozysdk-shell /path/to/your/app " +
+                                                "--remote your.cozycloud.cc");
 }else if(remoteCozy) {
     process.stdout.write('Password: ');
     pw(function (password) {
