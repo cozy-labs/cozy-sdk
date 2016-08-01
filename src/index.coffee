@@ -57,11 +57,17 @@ prepareRemote = (password, callback)->
         ensureApplication (err, app) ->
             return callback err if err
 
-            proxy = httpProxy.createServer
+            proxyParams =
                 target: remoteCozy,
-                agent: https.globalAgent,
                 headers:
                     host: url.parse(remoteCozy).host
+
+            if remoteCozy.indexOf('https') is 0
+                proxyParams.agent = https.globalAgent
+            else
+                proxyParams.agent = http.globalAgent
+
+            proxy = httpProxy.createServer proxyParams
 
             proxy.on 'proxyReq', (proxyReq, req) ->
                 proxyReq.setHeader 'Cookie', req.headers.cookie + "; #{cookie}"
